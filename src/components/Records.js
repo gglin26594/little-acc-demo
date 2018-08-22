@@ -8,7 +8,7 @@ class Records extends Component {
 		this.state = {
 			records: [
 				{"id":1, "date": "2018-01-08", "title": "income", "amount": 15},
-				{"id":2, "date": "2018-01-18", "title": "salary", "amount": 1522}
+				{"id":2, "date": "2018-04-18", "title": "salary", "amount": 1522}
 			]
 			
 		}
