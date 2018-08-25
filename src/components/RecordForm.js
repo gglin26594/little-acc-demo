@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import * as RecordAPI from "../utils/RecordsAPI";
 
 export default class RecordForm extends Component {
   constructor(props) {
@@ -20,10 +21,26 @@ export default class RecordForm extends Component {
     this.setState((obj = {}, obj["" + name] = event.target.value, obj));
   }
 
+  handleSubmit(event) {
+    event.preventDefault();
+    RecordAPI.create(this.state).then(
+        response => {
+          this.props.handleNewRecord(response.data);
+          this.setState({
+            date: "",
+            title: "",
+            amount: ""
+          }); 
+        }
+    ).catch(
+        err => console.log(err.message)
+    );
+  }
+
   render() {
     return (
       <div>
-        <form className="form-inline  mb-3">
+        <form className="form-inline  mb-3" onSubmit={this.handleSubmit.bind(this)}>
           <div className="form-group">
             <input
               type="text"
